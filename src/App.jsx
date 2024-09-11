@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import * as htmlToImage from "html-to-image";
+import html2canvas from "html2canvas";
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 
 function App() {
@@ -15,9 +16,16 @@ function App() {
   //    FileSaver.saveAs(blob, 'my-node.png');
   //  }
   // });
+
+  // html2canvas(document.body).then(function (canvas) {
+  //   document.body.appendChild(canvas);
+  // });
   const func = () =>
     htmlToImage
-      .toJpeg(document.getElementById("my-node"), { quality: 0.95 })
+      .toJpeg(document.getElementById("my-node"), {
+        quality: 0.95,
+        useCors: true,
+      })
       .then(function (dataUrl) {
         var link = document.createElement("a");
         link.download = "my-image-name.png";
